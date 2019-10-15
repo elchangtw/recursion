@@ -7,18 +7,13 @@ var stringifyJSON = function(obj) {
   // your code goes here
     //var result = '';
     var result; //do not initialize as string?
-    //var flag = 1;
 
     if(typeof obj==='undefined'){
-        //flag = 0;
-        return 'FAILUREFLAG';
-        //return result;
+        return undefined;
     }
 
     else if(typeof obj==='function'){
-        //flag = 0;
-        return 'FAILUREFLAG';
-        //return result;
+        return undefined;
     }
 
     else if(typeof obj==='boolean'){
@@ -29,7 +24,7 @@ var stringifyJSON = function(obj) {
 
     else if(typeof obj==='number'){
         result = ''; //did not initialize as string
-        result += obj;
+        result += obj.toString();
     }
     
     else if(typeof obj==='string'){
@@ -79,25 +74,14 @@ var stringifyJSON = function(obj) {
             result += '}';
         }
     }
-
-    //else{
-    //    result += 'null';
-    //}
     
-
-    if( result.indexOf('FAILUREFLAG') > 0 ){
-      //return result;
-      //return typeof result;
-      return '{}';
+    if( result.indexOf('undefined') > 0 ){
+        var undefinedStart = result.indexOf('undefined');
+        var undefinedEnd = result.indexOf('undefined') + 9;
+        if( result[undefinedStart-1]!=='"' || result[undefinedEnd]!=='"' ){
+            return '{}';
+        }
     }
-
-    //return typeof result;
-    /*
-    if( typeof result !== 'string' ){
-      return 'ok: ' + typeof result;
-      //return '{}';
-    }
-    */
 
     return result;
 };
