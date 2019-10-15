@@ -6,19 +6,16 @@
 var stringifyJSON = function(obj) {
   // your code goes here
     var result = '';
-    var flag = 1;
+    //var flag = 1;
 
     if(typeof obj==='undefined'){
-      flag = 0;
+        //flag = 0;
+        return 'FAILUREFLAG';
     }
+
     else if(typeof obj==='function'){
-      flag = 0;
-    }
-    //else if(typeof obj==='null'){
-    //    result += 'null';
-    //}
-    else if(obj===null){
-        result += 'null';
+        //flag = 0;
+        return 'FAILUREFLAG';
     }
 
     else if(typeof obj==='boolean'){
@@ -30,7 +27,11 @@ var stringifyJSON = function(obj) {
     }
     
     else if(typeof obj==='string'){
-      result += '"' + obj + '"';
+        result += '"' + obj + '"';
+    }
+
+    else if(obj===null){
+        result += 'null';
     }
 
     else if(typeof obj==='object'){
@@ -69,15 +70,13 @@ var stringifyJSON = function(obj) {
         }
     }
 
-    else{
+    //else{
     //    result += 'null';
-    }
-
-    if(flag===0){
-      return 'FAILUREFLAG';
-    }
+    //}
     
+
     if( result.indexOf('FAILUREFLAG') > 0 ){
+      //return result;
       return '{}';
     }
 
