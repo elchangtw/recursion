@@ -6,10 +6,13 @@
 var stringifyJSON = function(obj) {
   // your code goes here
     var result = '';
+    var flag = 1;
 
     if(typeof obj==='undefined'){
+      flag = 0;
     }
     else if(typeof obj==='function'){
+      flag = 0;
     }
     //else if(typeof obj==='null'){
     //    result += 'null';
@@ -68,6 +71,14 @@ var stringifyJSON = function(obj) {
 
     else{
     //    result += 'null';
+    }
+
+    if(flag===0){
+      return 'FAILUREFLAG';
+    }
+    
+    if( result.indexOf('FAILUREFLAG') > 0 ){
+      return '{}';
     }
 
     return result;
